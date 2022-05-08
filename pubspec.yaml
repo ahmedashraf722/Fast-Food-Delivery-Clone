@@ -38,6 +38,9 @@ dependencies:
   flutter_launcher_icons:
   fluttertoast:
   dots_indicator:
+  http:
+  shared_preferences:
+  flutter_bloc:
 
 dev_dependencies:
   flutter_test:

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/shared/components/components/app_column.dart';
 import 'package:food_delivery/shared/components/components/app_icon.dart';
+import 'package:food_delivery/shared/components/components/expandable_text_widget.dart';
 import 'package:food_delivery/shared/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 import '../../shared/components/components/big_texts.dart';
-import '../../shared/components/components/small_texts.dart';
 import '../../shared/components/constants/constants.dart';
 import '../../shared/styles/colors.dart';
 
@@ -15,8 +15,10 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
+          // Background image
           Positioned(
             left: 0,
             right: 0,
@@ -30,6 +32,7 @@ class PopularFoodDetail extends StatelessWidget {
               )),
             ),
           ),
+          // icon widgets
           Positioned(
             top: Dimensions.screenHeight / 18,
             left: Dimensions.screenHeight / 36,
@@ -41,12 +44,13 @@ class PopularFoodDetail extends StatelessWidget {
                   onTap: () {
                     Get.back();
                   },
-                  child: const AppIcon(iconData: Icons.arrow_back_ios),
+                  child: const AppIcon(iconData: Icons.arrow_back_ios_outlined),
                 ),
                 const AppIcon(iconData: Icons.add_shopping_cart_outlined),
               ],
             ),
           ),
+          // introductions food name and price ...
           Container(
             width: double.maxFinite,
             height: Dimensions.screenHeight / 1.5,
@@ -72,48 +76,85 @@ class PopularFoodDetail extends StatelessWidget {
                   text: 'Introduce',
                   size: Dimensions.sizeTextFont20,
                 ),
-                sizedBox(Dimensions.heightSizedBox30, 0.0),
-                const SmallText(
-                  text:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-                      'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,'
-                      'when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-                      'It has survived not only five centuries, but also the leap into electronic typesetting,'
-                      'remaining essentially unchanged.'
-                      'It has survived not only five centuries, but also the leap into electronic typesetting,'
-                      'It has survived not only five centuries, but also the leap into electronic typesetting.',
-                ),
-                sizedBox(Dimensions.heightSizedBox10, 0.0),
-                Row(
-                  children: const [
-                    SmallText(
-                      text: 'Show more',
-                      color: AppColors.mainColor,
+                sizedBox(Dimensions.heightSizedBox20, 0.0),
+                // expandable text food items
+                const Expanded(
+                  child: SingleChildScrollView(
+                    child: ExpandableText(
+                      text:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                          'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,'
+                          'It has survived not only five centuries, but also the leap into electronic typesetting,'
+                          'remaining essentially unchanged.'
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                          'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,'
+                          'It has survived not only five centuries, but also the leap into electronic typesetting,'
+                          'remaining essentially unchanged.',
                     ),
-                    Icon(
-                      Icons.arrow_drop_down_rounded,
-                      color: AppColors.mainColor,
-                    ),
-                  ],
-                ),
-                sizedBox(Dimensions.screenHeight / 10, 0.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    SmallText(
-                      text: 'Show more',
-                      color: AppColors.mainColor,
-                    ),
-                    Icon(
-                      Icons.arrow_drop_down_rounded,
-                      color: AppColors.mainColor,
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: Dimensions.bottomNavigationBarHeight,
+        padding: EdgeInsets.only(
+          left: Dimensions.widthSizedBox20,
+          right: Dimensions.widthSizedBox20,
+          top: Dimensions.heightSizedBox20,
+          bottom: Dimensions.heightSizedBox20,
+        ),
+        decoration: const BoxDecoration(
+          color: AppColors.buttonBackgroundColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                left: Dimensions.widthSizedBox10,
+                right: Dimensions.widthSizedBox10,
+                top: Dimensions.heightSizedBox20,
+                bottom: Dimensions.heightSizedBox20,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.remove, color: AppColors.signColor),
+                  sizedBox(0.0, Dimensions.widthSizedBox10 / 2),
+                  const BigText(text: '0', color: AppColors.signColor),
+                  sizedBox(0.0, Dimensions.widthSizedBox10 / 2),
+                  const Icon(Icons.add, color: AppColors.signColor),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                left: Dimensions.widthSizedBox10,
+                right: Dimensions.widthSizedBox10,
+                top: Dimensions.heightSizedBox20,
+                bottom: Dimensions.heightSizedBox20,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: const BigText(
+                text: '\$10 | Add to cart',
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:food_delivery/shared/styles/colors.dart';
 import 'package:food_delivery/shared/utils/dimensions.dart';
 import 'package:get/get.dart';
 
+import '../popular_food_characteristics_screen/popular_food_characteristics_screen.dart';
 import '../popular_food_detail_screen/popular_food_detail.dart';
 
 class FoodBodyScreen extends StatefulWidget {
@@ -218,14 +219,14 @@ class _FoodBodyScreenState extends State<FoodBodyScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          child: InkWell(
-            onTap: (){
-              Get.to( const PopularFoodDetail());
-            },
-            child: Row(
-              children: [
-                //image food
-                Container(
+          child: Row(
+            children: [
+              //image food
+              InkWell(
+                onTap: () {
+                  Get.to(const PopularFoodDetail());
+                },
+                child: Container(
                   width: 120,
                   height: 120,
                   decoration: BoxDecoration(
@@ -236,56 +237,63 @@ class _FoodBodyScreenState extends State<FoodBodyScreen> {
                     ),
                   ),
                 ),
-                //text container food
-                Expanded(
-                  child: Container(
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0),
-                      ),
+              ),
+              //text container food
+              Expanded(
+                child: Container(
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          sizedBox(Dimensions.heightSizedBox10, 0.0),
-                          const BigText(text: 'Salad and Fruit meal in Egyption'),
-                          sizedBox(Dimensions.heightSizedBox10, 0.0),
-                          const SmallText(text: 'With Egyption Characteristics'),
-                          sizedBox(Dimensions.heightSizedBox10, 0.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const IconsAndTextsWidgets(
-                                icon: Icons.circle_sharp,
-                                text: 'Normal',
-                                iconColor: AppColors.iconColor1,
-                              ),
-                              sizedBox(0.0, 2.0),
-                              const IconsAndTextsWidgets(
-                                icon: Icons.location_on,
-                                text: '1.8km',
-                                iconColor: AppColors.mainColor,
-                              ),
-                              sizedBox(0.0, 2.0),
-                              const IconsAndTextsWidgets(
-                                icon: Icons.access_time_rounded,
-                                text: '35min',
-                                iconColor: AppColors.iconColor2,
-                              ),
-                              sizedBox(0.0, 2.0),
-                            ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        sizedBox(Dimensions.heightSizedBox10, 0.0),
+                        const BigText(text: 'Salad and Fruit meal in Egyption'),
+                        sizedBox(Dimensions.heightSizedBox10, 0.0),
+                        InkWell(
+                          onTap: () {
+                            Get.to(const PopularFoodCharacteristics());
+                          },
+                          child: const SmallText(
+                            text: 'With Egyption Characteristics',
                           ),
-                        ],
-                      ),
+                        ),
+                        sizedBox(Dimensions.heightSizedBox10, 0.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const IconsAndTextsWidgets(
+                              icon: Icons.circle_sharp,
+                              text: 'Normal',
+                              iconColor: AppColors.iconColor1,
+                            ),
+                            sizedBox(0.0, 2.0),
+                            const IconsAndTextsWidgets(
+                              icon: Icons.location_on,
+                              text: '1.8km',
+                              iconColor: AppColors.mainColor,
+                            ),
+                            sizedBox(0.0, 2.0),
+                            const IconsAndTextsWidgets(
+                              icon: Icons.access_time_rounded,
+                              text: '35min',
+                              iconColor: AppColors.iconColor2,
+                            ),
+                            sizedBox(0.0, 2.0),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
